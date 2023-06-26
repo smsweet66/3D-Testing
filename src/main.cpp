@@ -1,9 +1,5 @@
 #include "pch.hpp"
 
-typedef std::vector<tinyobj::shape_t> Shape;
-typedef std::vector<tinyobj::material_t> Material;
-typedef tinyobj::attrib_t Attribute;
-
 constexpr unsigned int width = 2560, height = 1440, maxHertz = 60;
 
 int main()
@@ -53,7 +49,7 @@ int main()
 		else
 			std::cout << "Raw mouse motion not supported!!!" << std::endl;
 
-		Mesh object("res/objects/rungholt.obj", "res/objects/rungholt-RGBA.png", shader);
+		Mesh object("res/objects/cube.obj", "res/textures/crate.png", shader);
 
 		double timestep = 1.0/maxHertz;
 		glfwSwapBuffers(window);

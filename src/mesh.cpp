@@ -7,16 +7,15 @@ Mesh::Mesh(const std::string &inputFile, const std::string &textureFile, const S
 	std::string err;
 	bool ret = tinyobj::LoadObj(&attribute, &shapes, &materials, &warn, &err, inputFile.c_str());
 	if (!warn.empty())
-		std::cerr << "WARN:" << warn << std::endl;
+		std::cerr << "WARN:  " << warn << std::endl;
 	if (!err.empty())
-		std::cerr << err << std::endl;
+		std::cerr << "ERROR: " << err << std::endl;
 	if (!ret)
 		exit(1);
 
-	int numIndices = 0;
+	unsigned int numIndices = 0;
 	for(const auto &shape : shapes)
-		for(const auto &index : shape.mesh.indices)
-			numIndices++;
+		numIndices += shape.mesh.indices.size();
 
 	vertices.reserve(numIndices);
 	for(const auto &shape : shapes)
